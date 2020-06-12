@@ -9,10 +9,10 @@ public class Database {
     private String driver = "org.postgresql.Driver";
     private Connection conn = null;
     public static final String JDBC_POSTGRESQL = "postgresql";
-    public static final String HOST = "ec2-50-17-90-177.compute-1.amazonaws.com";
-    public static final String USER_POSTGRESQL = "ytdypczmmithle";
-    public static final String PASS_POSTGRESQL = "db0f60832947389ae0e8db272259e3f8f5c8d4c0082ac51cc350a40174d84df9";
-    public static final String DB_POSTGRESQL = "de4m8597luu8eq?sslmode=require";
+    public static final String HOST = "ec2-18-232-143-90.compute-1.amazonaws.com";
+    public static final String USER_POSTGRESQL = "csgsrppqlhhadk";
+    public static final String PASS_POSTGRESQL = "c151aeb6108b66559f29ba19e891fd942775d4c51a42d45e249a8a85ab6667ce";
+    public static final String DB_POSTGRESQL = "d5njdheac2pn0i?sslmode=require";
     public static final int PORT_POSTGRESQL = 5432;
 
     // En caso de conectar usando los valores por default de las variables ya

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>EBAY - Add Post</title>
+    <title>EBAY - Edit Article</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -78,7 +78,7 @@
                 <h1 class="my-4">Options</h1>
                 <div class="list-group">
                     <a href="user.html" class="list-group-item">View Articles</a>
-                    <a href="#" class="list-group-item">Post Articles</a>
+                    <a href="add_post.html" class="list-group-item">Post Articles</a>
                     <a href="my_articles.html" class="list-group-item">My Articles</a>
                 </div>
 
@@ -93,47 +93,14 @@
 
             <div class="col-lg-9">
 
-                <h1 class="my-4" style="text-align: center;">Add Post</h1>
+                <h1 class="my-4" style="text-align: center;">Edit Article</h1>
 
-                <div class="row justify-content-md-center">
-                    <div class="well">
-                        <div role="form">
-                            <div class="row form-group">
-                                <div class="col-4">
-                                    <input type="text" class="form-control" id="posts_title" placeholder="Title">
-                                </div>
-                                <div class="col-4">
-                                    <input type="number" min="1" class="form-control" id="posts_price"
-                                        placeholder="Price">
-                                </div>
-                                <div class="col-4">
-                                    <input type="number" min="0" class="form-control" id="posts_quantity"
-                                        placeholder="Quantity">
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col-12">
-                                    <textarea class="form-control" id="posts_description" placeholder="Description"
-                                        style="height:131px; resize:none" rows="3"></textarea>
-
-                                </div>
-                            </div>
-                            
-                            <label class="btn btn-success">
-                                Upload image<input type="file" style="display:none" name="file" id="file"
-                                    onchange="onFileChange(event)">
-                            </label>
-
-                            <button onclick="sendFiles();" class="btn btn-primary"
-                                style="float:right;">Post</button>
-
-                            <h4 id="message"></h4>
-                            
-                        </div>
-                    </div>
+                <div id="aca">
 
                 </div>
-                <!-- /.row -->
+                <div id="damelotodo">
+
+                </div>
 
             </div>
             <!-- /.col-lg-9 -->
@@ -143,7 +110,7 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="bg-dark">
+    <footer class="bg-dark" style="position: relative;">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; EBAY 2019</p>
         </div>
@@ -160,7 +127,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
-    <script src="js/add_post.js"></script>
+    <script src="js/edit_article.js"></script>
 </body>
 
 </html>

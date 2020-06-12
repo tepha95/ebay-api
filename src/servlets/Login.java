@@ -2,8 +2,6 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,13 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 import helpers.Database;
 import helpers.Hash;
 import helpers.Json;
-import jdk.nashorn.internal.parser.JSONParser;
-import netscape.javascript.JSObject;
 
 /**
  * Servlet implementation class Login

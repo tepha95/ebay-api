@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import helpers.Database;
-import helpers.Hash;
 import helpers.Json;
 
 /**
