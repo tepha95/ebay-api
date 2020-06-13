@@ -40,7 +40,7 @@ public class GetPosts extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if (!session.isNew()) {
 			Database db = new Database();
-			Object[][] res = db.executeQuery("select *from posts order by posts_created_at desc;");
+			Object[][] res = db.executeQuery("select *from posts where posts_quantity > 0 order by posts_created_at desc;");
 			
 			Json json = new Json();
 			json.add("status", 200);

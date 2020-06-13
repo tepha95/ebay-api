@@ -37,14 +37,13 @@ public class GetArticle extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("application/json");
 		HttpSession session = request.getSession();
-		String id_users = (String) session.getAttribute("user");
 		String posts_id  = request.getParameter("posts_id");
 		
 		PrintWriter out = response.getWriter();
 		if (!session.isNew()) {
 			Database db = new Database();
-			Object[][] res = db.executeQuery("select *from posts where id_users = ? AND posts_id = ? order by posts_created_at desc;", Integer.parseInt(id_users), Integer.parseInt(posts_id));
-			Object[][] res2 = db.executeQuery("SELECT *FROM comments INNER JOIN posts ON comments.posts_id = posts.posts_id WHERE comments.posts_id = ? AND comments.id_users = ? ORDER BY comments.comments_created_at desc;", Integer.parseInt(posts_id), Integer.parseInt(id_users));
+			Object[][] res = db.executeQuery("SELECT *FROM posts WHERE posts_id = ? ORDER BY posts_created_at DESC;", Integer.parseInt(posts_id));
+			Object[][] res2 = db.executeQuery("SELECT comments.comments_id, comments.posts_id, comments.id_users, comments.comments_descripcion, comments.comments_created_at, comments.comments_main, comments.comments_refer_id FROM comments INNER JOIN posts ON comments.posts_id = posts.posts_id WHERE comments.posts_id = ? ORDER BY comments.comments_created_at ASC;", Integer.parseInt(posts_id));
 			Json json = new Json();
 			json.add("status", 200);
 			json.add("message", "Success");

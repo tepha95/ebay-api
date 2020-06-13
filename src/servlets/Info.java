@@ -47,6 +47,7 @@ public class Info extends HttpServlet {
 
 			Json json = new Json();
 			json.add("status", 200);
+			json.add("id_users", user);
 			json.add("message", "Bienvenido " + user + "");
 			json.add("data", json.getData(res));
 			response.setStatus(200);

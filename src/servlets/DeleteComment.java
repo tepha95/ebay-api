@@ -14,16 +14,16 @@ import helpers.Database;
 import helpers.Json;
 
 /**
- * Servlet implementation class EditArticle
+ * Servlet implementation class DeleteComment
  */
-@WebServlet("/EditArticle")
-public class EditArticle extends HttpServlet {
+@WebServlet("/DeleteComment")
+public class DeleteComment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public EditArticle() {
+	public DeleteComment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -48,20 +48,16 @@ public class EditArticle extends HttpServlet {
 		response.setContentType("application/json");
 		HttpSession session = request.getSession();
 		String id_users = (String) session.getAttribute("user");
-		String posts_id  = request.getParameter("posts_id");
-		String posts_title = request.getParameter("posts_title");
-		String posts_description = request.getParameter("posts_description");
-		String posts_price = request.getParameter("posts_price");
-		String posts_quantity = request.getParameter("posts_quantity");
+		String comments_id  = request.getParameter("comments_id");
 
 		PrintWriter out = response.getWriter();
 		if (!session.isNew()) {
 			Database db = new Database();
-			boolean ex = db.execute("UPDATE posts SET posts_title = ?, posts_description = ?, posts_price = ?, posts_quantity = ? WHERE id_users = ? AND posts_id = ?", posts_title, posts_description, Double.valueOf(posts_price), Integer.parseInt(posts_quantity), Integer.parseInt(id_users), Integer.parseInt(posts_id));
+			boolean ex = db.execute("DELETE FROM comments WHERE id_users = ? AND comments_id = ?", Integer.parseInt(id_users), Integer.parseInt(comments_id));
 			if(ex){
 				Json json = new Json();
 				json.add("status", 200);
-				json.add("message", "Datos editados");
+				json.add("message", "Comentario eliminado");
 				response.setStatus(200);
 				out.print(json);
 				out.flush();

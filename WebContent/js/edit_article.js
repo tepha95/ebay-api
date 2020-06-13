@@ -73,8 +73,6 @@ function getArticle() {
                 arr.push(data.data[key]);
             });
 
-            console.log(arr);
-
             for (var x in arr) {
                 //Creación de elementos
                 var div = document.createElement("div");
@@ -143,7 +141,7 @@ function getArticle() {
     }
     var url = new URL(window.location.href);
     var posts_id = url.searchParams.get("posts_id");
-    console.log(posts_id);
+
     xhr.open("GET", "GetArticle?posts_id=" + posts_id, true);
     xhr.send();
 }

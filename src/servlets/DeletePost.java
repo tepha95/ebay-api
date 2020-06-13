@@ -14,7 +14,7 @@ import helpers.Database;
 import helpers.Json;
 
 /**
- * Servlet implementation class EditArticle
+ * Servlet implementation class DeletePost
  */
 @WebServlet("/DeletePost")
 public class DeletePost extends HttpServlet {
@@ -53,8 +53,9 @@ public class DeletePost extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if (!session.isNew()) {
 			Database db = new Database();
-			boolean ex = db.execute("DELETE from posts WHERE id_users = ? AND posts_id = ?", Integer.parseInt(id_users), Integer.parseInt(posts_id));
-			if(ex){
+			boolean res = db.execute("DELETE FROM comments WHERE posts_id = ?", Integer.parseInt(posts_id));
+			boolean ex = db.execute("DELETE FROM posts WHERE id_users = ? AND posts_id = ?", Integer.parseInt(id_users), Integer.parseInt(posts_id));
+			if(res && ex){
 				Json json = new Json();
 				json.add("status", 200);
 				json.add("message", "Post eliminado");

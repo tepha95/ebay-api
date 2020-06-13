@@ -73,8 +73,6 @@ function myArticles(){
         arr.push(data.data[key]);
       });
 
-      console.log(arr);
-
       for(var x in arr){
         //Creación de elementos
         var div = document.createElement("div");
@@ -85,6 +83,7 @@ function myArticles(){
         var img = document.createElement("img");
         var h4 = document.createElement("h4");
         var h5 = document.createElement("h5");
+        var h6 = document.createElement("h6");
         var p = document.createElement("p");
         var button_edit = document.createElement("button");
         var button_delete = document.createElement("button");
@@ -117,6 +116,7 @@ function myArticles(){
         button_delete.setAttribute("class", "btn btn-danger");
         button_delete.setAttribute("onclick", "deletePost("+arr[x].posts_id+")");
         h5.textContent = "$" + arr[x].posts_price;
+        h6.textContent = "Quantity: " + arr[x].posts_quantity;
         p.textContent = arr[x].posts_description;
         button_edit.textContent = "Edit";
         button_delete.textContent = "Delete";
@@ -125,6 +125,7 @@ function myArticles(){
         h4.appendChild(a2);
         div3.appendChild(h4);
         div3.appendChild(h5);
+        div3.appendChild(h6);
         div3.appendChild(p);
         div3.appendChild(button_edit);
         div3.appendChild(button_delete);

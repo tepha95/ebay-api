@@ -61,7 +61,6 @@ function logout() {
 function sendFiles() {
     var xhr = new XMLHttpRequest();
     const formData = new FormData();
-    console.log(file.files[0]);
     formData.append('file', file.files[0]);
     formData.append('posts_title', posts_title.value);
     formData.append('posts_description', posts_description.value);

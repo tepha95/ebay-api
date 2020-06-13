@@ -67,11 +67,13 @@ public class Post extends HttpServlet {
 			String posts_quantity = request.getParameter("posts_quantity");
 			String url = session.getServletContext().getRealPath("WebContent\\Media\\" + session.getAttribute("user"));
 			String fileName = this.getFileName(file);
+			String messageDir = "";
 			OutputStream os = null;
 			try {
 				File createFile = new File(url);
 				if (!createFile.exists()) {
 					if (createFile.mkdir()) {
+						messageDir = "Directorio creado";
 						System.out.println("Directorio creado");
 						os = new FileOutputStream(url + "\\" + fileName);
 						int read = 0;
@@ -80,6 +82,7 @@ public class Post extends HttpServlet {
 							os.write(bytes, 0, read);
 						}
 					} else {
+						messageDir = "Error al crear el directorio";
 						System.out.println("Error al crear el directorio");
 					}
 				} else {
@@ -89,6 +92,7 @@ public class Post extends HttpServlet {
 					while ((read = filecontent.read(bytes)) != -1) {
 						os.write(bytes, 0, read);
 					}
+					messageDir = "Ese directorio ya existe";
 					System.out.println("Ese directorio ya existe");
 				}
 
@@ -102,7 +106,6 @@ public class Post extends HttpServlet {
 					os.close();
 				}
 				String urlDefinitive = url + "\\" + fileName;
-				System.out.println(urlDefinitive);
 				Database db = new Database();
 				Object[][] time = db.executeQuery("SELECT *FROM now();");
 				boolean ex = db.execute(
@@ -114,6 +117,7 @@ public class Post extends HttpServlet {
 					Json json = new Json();
 					json.add("status", 200);
 					json.add("message", "Articulo ingresado con exito");
+					json.add("messageDir", messageDir);
 					response.setStatus(200);
 					out.print(json);
 					out.flush();
@@ -121,6 +125,7 @@ public class Post extends HttpServlet {
 					Json json = new Json();
 					json.add("status", 500);
 					json.add("message", "Error interno del servidor");
+					json.add("messageDir", messageDir);
 					response.setStatus(500);
 					out.print(json);
 					out.flush();

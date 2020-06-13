@@ -41,8 +41,10 @@ public class Delete extends HttpServlet {
 		
 		if (!session.isNew()) {
 			Database db = new Database();
-			boolean res = db.execute("DELETE FROM users WHERE id_users = ?", Integer.parseInt(user));
-			if (res) {
+			boolean res = db.execute("DELETE FROM comments WHERE id_users = ?", Integer.parseInt(user));
+			boolean res2 = db.execute("DELETE FROM posts WHERE id_users = ?", Integer.parseInt(user));
+			boolean res3 = db.execute("DELETE FROM users WHERE id_users = ?", Integer.parseInt(user));
+			if (res && res2 && res3) {
 				session.invalidate();
 				Json json = new Json();
 				json.add("status", 200);

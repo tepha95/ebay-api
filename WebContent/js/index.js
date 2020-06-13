@@ -14,7 +14,7 @@ function login() {
       alert(data.message);
     }
   }
-  console.log(username.value, password.value)
+
   var params = "username=" + username.value + "&password=" + password.value;
   xhr.open("POST", "Login", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

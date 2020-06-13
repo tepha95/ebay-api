@@ -73,8 +73,6 @@ function getPosts(){
         arr.push(data.data[key]);
       });
 
-      console.log(arr);
-
       for(var x in arr){
         //Creación de elementos
         var div = document.createElement("div");
@@ -85,6 +83,7 @@ function getPosts(){
         var img = document.createElement("img");
         var h4 = document.createElement("h4");
         var h5 = document.createElement("h5");
+        var h6 = document.createElement("h6");
         var p = document.createElement("p");
 
         //Asignacion de atributos
@@ -111,12 +110,14 @@ function getPosts(){
         h4.setAttribute("class", "card-title");
         p.setAttribute("class", "card-text")
         h5.textContent = "$" + arr[x].posts_price;
+        h6.textContent = "Quantity: " + arr[x].posts_quantity;
         p.textContent = arr[x].posts_description;
         //Appendchild a los elementos
 
         h4.appendChild(a2);
         div3.appendChild(h4);
         div3.appendChild(h5);
+        div3.appendChild(h6);
         div3.appendChild(p);
         a.appendChild(img);
         div2.appendChild(a);
