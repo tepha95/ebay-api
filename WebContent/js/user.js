@@ -99,7 +99,7 @@ function getPosts(){
         img.setAttribute("class", "card-img-top");
         //img.setAttribute("style", "height: 169px; width:253px");
         img.src = arr[x].posts_image;
-        a2.setAttribute("href", "#");
+        a2.setAttribute("href", "detail_article.html?posts_id="+arr[x].posts_id);
         a2.textContent = arr[x].posts_title;
 
         img.setAttribute("onclick", "verImagen('../"+arr[x].posts_image+"', '"+arr[x].posts_image+"')");
@@ -110,7 +110,7 @@ function getPosts(){
         //h4, h5 y p
         h4.setAttribute("class", "card-title");
         p.setAttribute("class", "card-text")
-        h5.textContent = arr[x].posts_price;
+        h5.textContent = "$" + arr[x].posts_price;
         p.textContent = arr[x].posts_description;
         //Appendchild a los elementos
 

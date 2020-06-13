@@ -101,7 +101,7 @@ function myArticles(){
         img.setAttribute("class", "card-img-top");
         //img.setAttribute("style", "height: 169px; width:253px");
         img.src = arr[x].posts_image;
-        a2.setAttribute("href", "#");
+        a2.setAttribute("href", "edit_article.html?posts_id="+arr[x].posts_id);
         a2.textContent = arr[x].posts_title;
 
         img.setAttribute("onclick", "verImagen('../"+arr[x].posts_image+"', '"+arr[x].posts_image+"')");
@@ -115,7 +115,8 @@ function myArticles(){
         button_edit.setAttribute("class", "btn btn-primary");
         button_edit.setAttribute("onclick", "goEdit("+arr[x].posts_id+")");
         button_delete.setAttribute("class", "btn btn-danger");
-        h5.textContent = arr[x].posts_price;
+        button_delete.setAttribute("onclick", "deletePost("+arr[x].posts_id+")");
+        h5.textContent = "$" + arr[x].posts_price;
         p.textContent = arr[x].posts_description;
         button_edit.textContent = "Edit";
         button_delete.textContent = "Delete";
@@ -149,4 +150,19 @@ function myArticles(){
 
 function goEdit(posts_id){
     window.location.href = "edit_article.html?posts_id="+posts_id;
+}
+
+function deletePost(posts_id){
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (xhr.status === 200 && xhr.readyState === 4) {
+      var data = JSON.parse(xhr.responseText);
+      alert(data.message);
+      myArticles();
+    }
+  }
+  var params = "posts_id="+posts_id;
+  xhr.open("POST", "DeletePost", true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send(params);
 }

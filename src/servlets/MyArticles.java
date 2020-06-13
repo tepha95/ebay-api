@@ -41,7 +41,7 @@ public class MyArticles extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if (!session.isNew()) {
 			Database db = new Database();
-			Object[][] res = db.executeQuery("select *from posts where id_users = ? order by posts_created_at asc;", Integer.parseInt(id_users));
+			Object[][] res = db.executeQuery("select *from posts where id_users = ? order by posts_created_at desc;", Integer.parseInt(id_users));
 			
 			Json json = new Json();
 			json.add("status", 200);

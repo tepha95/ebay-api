@@ -44,7 +44,7 @@ CREATE TABLE public.comments (
                 comments_descripcion VARCHAR(200) NOT NULL,
                 comments_created_at TIMESTAMP NOT NULL,
                 comments_main BOOLEAN NOT NULL,
-                comments_refer_id INTEGER,
+                comments_refer_id varchar(100),
                 CONSTRAINT comments_pk PRIMARY KEY (comments_id)
 );
 
