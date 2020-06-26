@@ -3,6 +3,7 @@ var lastname = document.getElementById('lastname');
 var phone = document.getElementById('phone');
 var username = document.getElementById('username');
 var welcome = document.getElementById('welcome');
+var cart_quantity = document.getElementById('cart_quantity');
 
 info();
 
@@ -13,6 +14,7 @@ function info() {
     if (xhr.status === 200 && xhr.readyState === 4) {
       var data = JSON.parse(xhr.responseText);
       welcome.innerText = data.message;
+      cart_quantity.setAttribute("data-count", data.cart_quantity);
       Object.keys(data.data).forEach(function (key) {
         // arr.push(data.data[key]);
         nameuser.value = data.data[key].name;

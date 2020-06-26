@@ -1,4 +1,5 @@
 var welcome = document.getElementById('welcome');
+var cart_quantity = document.getElementById('cart_quantity');
 
 var comments_descripcion_edit = document.getElementById("comments_descripcion_edit");
 var comments_id_edit = null;
@@ -15,6 +16,7 @@ function info() {
         if (xhr.status === 200 && xhr.readyState === 4) {
             var data = JSON.parse(xhr.responseText);
             welcome.innerText = data.message;
+            cart_quantity.setAttribute("data-count", data.cart_quantity);
             global_id = data.id_users;
             getArticle();
         } else if (xhr.status === 401 && xhr.readyState === 4) {

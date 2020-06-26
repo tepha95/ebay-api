@@ -1,4 +1,5 @@
 var welcome = document.getElementById('welcome');
+var cart_quantity = document.getElementById('cart_quantity');
 var file = document.getElementById('file');
 var posts_title = document.getElementById('posts_title');
 var posts_description = document.getElementById('posts_description');
@@ -14,6 +15,7 @@ function info() {
         if (xhr.status === 200 && xhr.readyState === 4) {
             var data = JSON.parse(xhr.responseText);
             welcome.innerText = data.message;
+            cart_quantity.setAttribute("data-count", data.cart_quantity);
         } else if (xhr.status === 401 && xhr.readyState === 4) {
             var data = JSON.parse(xhr.responseText);
             alert(data.message);

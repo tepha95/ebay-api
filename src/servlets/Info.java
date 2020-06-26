@@ -44,11 +44,14 @@ public class Info extends HttpServlet {
 			Database db = new Database();
 			Object[][] res = db.executeQuery("select name, lastname, username, phone from users WHERE id_users = ?",
 					Integer.parseInt(user));
+			Object[][] res2 = db.executeQuery("select *from cart WHERE id_users = ?",
+					Integer.parseInt(user));
 
 			Json json = new Json();
 			json.add("status", 200);
 			json.add("id_users", user);
 			json.add("message", "Bienvenido " + user + "");
+			json.add("cart_quantity", res2.length - 1);
 			json.add("data", json.getData(res));
 			response.setStatus(200);
 			out.print(json);

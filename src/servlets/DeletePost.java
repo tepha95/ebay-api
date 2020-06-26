@@ -53,9 +53,10 @@ public class DeletePost extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if (!session.isNew()) {
 			Database db = new Database();
-			boolean res = db.execute("DELETE FROM comments WHERE posts_id = ?", Integer.parseInt(posts_id));
+			boolean res = db.execute("DELETE FROM cart WHERE posts_id = ?", Integer.parseInt(posts_id));
+			boolean res2 = db.execute("DELETE FROM comments WHERE posts_id = ?", Integer.parseInt(posts_id));
 			boolean ex = db.execute("DELETE FROM posts WHERE id_users = ? AND posts_id = ?", Integer.parseInt(id_users), Integer.parseInt(posts_id));
-			if(res && ex){
+			if(res && res2 && ex){
 				Json json = new Json();
 				json.add("status", 200);
 				json.add("message", "Post eliminado");

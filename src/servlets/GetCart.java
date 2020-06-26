@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import helpers.Database;
 import helpers.Json;
 
 /**
- * Servlet implementation class Delete
+ * Servlet implementation class GetCart
  */
-@WebServlet("/Delete")
-public class Delete extends HttpServlet {
+@WebServlet("/GetCart")
+public class GetCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Delete() {
+	public GetCart() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,32 +37,20 @@ public class Delete extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("application/json");
 		HttpSession session = request.getSession();
-		PrintWriter out = response.getWriter();
-		String user = (String) session.getAttribute("user");
+		String id_users = (String) session.getAttribute("user");
 		
+		PrintWriter out = response.getWriter();
 		if (!session.isNew()) {
 			Database db = new Database();
-			boolean res = db.execute("DELETE FROM cart WHERE id_users = ?", Integer.parseInt(user));
-			boolean res2 = db.execute("DELETE FROM comments WHERE id_users = ?", Integer.parseInt(user));
-			boolean res3 = db.execute("DELETE FROM posts WHERE id_users = ?", Integer.parseInt(user));
-			boolean res4 = db.execute("DELETE FROM users WHERE id_users = ?", Integer.parseInt(user));
-			if (res && res2 && res3 && res4) {
-				session.invalidate();
-				Json json = new Json();
-				json.add("status", 200);
-				json.add("message", "Borrado con exito");
-				response.setStatus(200);
-				out.print(json);
-				out.flush();
-			} else {
-				Json json = new Json();
-				json.add("status", 500);
-				json.add("message", "Error al eliminar");
-				response.setStatus(500);
-				out.print(json);
-				out.flush();
-			}
-		}else {
+			Object[][] res = db.executeQuery("SELECT cart.posts_id, posts.id_users, cart.cart_quantity, posts_title, posts_description, posts_price, posts_created_at, posts_quantity, posts_image FROM cart INNER JOIN posts ON cart.posts_id = posts.posts_id WHERE cart.id_users = ?", Integer.parseInt(id_users));
+			Json json = new Json();
+			json.add("status", 200);
+			json.add("message", "Success");
+			json.add("data", json.getDataReplaceBackslash(res));
+			response.setStatus(200);
+			out.print(json);
+			out.flush();
+		} else {
 			session.invalidate();
 			Json json = new Json();
 			json.add("status", 401);
@@ -70,7 +59,6 @@ public class Delete extends HttpServlet {
 			out.print(json);
 			out.flush();
 		}
-
 	}
 
 	/**
